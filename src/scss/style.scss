@@ -1,8 +1,8 @@
-@use "@coreui/coreui/scss/coreui" as * with ( 
-  $enable-deprecation-messages: false,
+@use '@coreui/coreui/scss/coreui' as * with (
+  $enable-deprecation-messages: false
 );
-@use "@coreui/chartjs/scss/coreui-chartjs";
-@use "vendors/simplebar";
+@use '@coreui/chartjs/scss/coreui-chartjs';
+@use 'vendors/simplebar';
 
 body {
   background-color: var(--cui-tertiary-bg);
@@ -12,7 +12,7 @@ body {
   width: 100%;
   padding-inline: var(--cui-sidebar-occupy-start, 0) var(--cui-sidebar-occupy-end, 0);
   will-change: auto;
-  @include transition(padding .15s);
+  @include transition(padding 0.15s);
 }
 
 .header > .container-fluid,
@@ -63,5 +63,67 @@ body {
 
   .footer {
     --cui-footer-bg: var(--cui-body-bg);
+  }
+}
+
+.app-footer {
+  background: var(--cui-body-bg); // ikut warna body
+  border-top: 1px solid var(--cui-border-color);
+  color: var(--cui-body-color); // teks sesuai tema
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .brand-text {
+    font-weight: 600;
+  }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    .powered {
+      color: var(--cui-secondary-color); // abu-abu sesuai tema
+    }
+
+    .footer-link {
+      color: var(--cui-link-color); // ikut tema link
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--cui-link-hover-color);
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.app-sidebar {
+  background: var(--cui-body-bg); // ikut tema (light/dark/auto)
+  color: var(--cui-body-color);
+
+  .nav-link {
+    color: var(--cui-body-color);
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background-color: var(--cui-secondary-bg);
+      color: var(--cui-link-hover-color);
+    }
+
+    &.active {
+      background-color: var(--cui-primary-bg-subtle);
+      color: var(--cui-primary-color);
+      font-weight: 600;
+    }
+  }
+
+  .nav-icon {
+    color: inherit;
+    margin-right: 8px;
   }
 }
