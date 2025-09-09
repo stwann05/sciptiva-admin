@@ -14,11 +14,11 @@ import {
 
 const Tim = () => {
   const [tim, setTim] = useState({
-    'Kuantitatif 1': ['Alice', 'Bob'],
-    'Kuantitatif 2': ['Charlie', 'Diana'],
-    Kualitatif: ['Eve', 'Frank'],
-    Pendidikan: ['Grace', 'Hank'],
-    Statistika: ['Ivy', 'Jack'],
+    'Kuantitatif 1': [],
+    'Kuantitatif 2': [],
+    Kualitatif: [],
+    Pendidikan: [],
+    Statistika: [],
   })
 
   const [nama, setNama] = useState('')
@@ -80,16 +80,23 @@ const Tim = () => {
             <CCard>
               <CCardHeader>{namaTim}</CCardHeader>
               <CCardBody>
-                <ul className="mb-0 list-unstyled">
-                  {tim[namaTim].map((anggota, i) => (
-                    <li key={i} className="d-flex justify-content-between align-items-center mb-1">
-                      {anggota}
-                      <CButton color="danger" size="sm" onClick={() => hapusAnggota(namaTim, i)}>
-                        Hapus
-                      </CButton>
-                    </li>
-                  ))}
-                </ul>
+                {tim[namaTim].length === 0 ? (
+                  <p className="text-muted">Belum ada anggota</p>
+                ) : (
+                  <ul className="mb-0 list-unstyled">
+                    {tim[namaTim].map((anggota, i) => (
+                      <li
+                        key={i}
+                        className="d-flex justify-content-between align-items-center mb-1"
+                      >
+                        {anggota}
+                        <CButton color="danger" size="sm" onClick={() => hapusAnggota(namaTim, i)}>
+                          Hapus
+                        </CButton>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </CCardBody>
             </CCard>
           </CCol>

@@ -1,77 +1,65 @@
-// src/views/klien/Klien.js
 import React from 'react'
 import {
   CCard,
   CCardBody,
   CCardHeader,
+  CRow,
+  CCol,
   CTable,
-  CTableBody,
   CTableHead,
   CTableRow,
   CTableHeaderCell,
+  CTableBody,
   CTableDataCell,
 } from '@coreui/react'
 
-const Klien = () => {
-  const data = [
-    {
-      nama: 'PT Nusantara',
-      tim: 'Kuantitatif 1',
-      analyst: 'Ivan',
-      deadline: '2025-09-15',
-      point: 85,
-    },
-    {
-      nama: 'CV Maju Jaya',
-      tim: 'Kualitatif',
-      analyst: 'Xaviera',
-      deadline: '2025-09-18',
-      point: 90,
-    },
-    {
-      nama: 'EduTech ID',
-      tim: 'Pendidikan',
-      analyst: 'Budi',
-      deadline: '2025-09-20',
-      point: 75,
-    },
-    {
-      nama: 'Statistika Corp',
-      tim: 'Statistika',
-      analyst: 'Siti',
-      deadline: '2025-09-22',
-      point: 88,
-    },
-  ]
-
+const Klien = ({ teams = [] }) => {
   return (
-    <CCard className="mb-4 shadow-sm border-0">
-      <CCardHeader className="fw-bold bg-primary text-white">Daftar Klien</CCardHeader>
-      <CCardBody>
-        <CTable hover responsive bordered align="middle">
-          <CTableHead color="light">
-            <CTableRow>
-              <CTableHeaderCell>Nama Klien</CTableHeaderCell>
-              <CTableHeaderCell>Tim</CTableHeaderCell>
-              <CTableHeaderCell>Analyst</CTableHeaderCell>
-              <CTableHeaderCell>Deadline</CTableHeaderCell>
-              <CTableHeaderCell>Point</CTableHeaderCell>
-            </CTableRow>
-          </CTableHead>
-          <CTableBody>
-            {data.map((item, index) => (
-              <CTableRow key={index}>
-                <CTableDataCell className="fw-semibold">{item.nama}</CTableDataCell>
-                <CTableDataCell>{item.tim}</CTableDataCell>
-                <CTableDataCell>{item.analyst}</CTableDataCell>
-                <CTableDataCell>{item.deadline}</CTableDataCell>
-                <CTableDataCell className="text-center fw-bold">{item.point}</CTableDataCell>
-              </CTableRow>
-            ))}
-          </CTableBody>
-        </CTable>
-      </CCardBody>
-    </CCard>
+    <div style={{ padding: 16 }}>
+      <CRow className="g-4">
+        {teams.length === 0 ? (
+          <div style={{ textAlign: 'center', color: '#6c757d', padding: 20, width: '100%' }}>
+            Belum ada data tim
+          </div>
+        ) : (
+          teams.map((team, idx) => (
+            <CCol xs={12} key={idx}>
+              <CCard className="shadow">
+                <CCardHeader>{team.name}</CCardHeader>
+                <CCardBody>
+                  {team.projects.length === 0 ? (
+                    <div style={{ textAlign: 'center', color: '#6c757d', padding: 20 }}>
+                      Belum ada klien untuk tim ini
+                    </div>
+                  ) : (
+                    <CTable bordered hover responsive>
+                      <CTableHead color="light">
+                        <CTableRow>
+                          <CTableHeaderCell>#</CTableHeaderCell>
+                          <CTableHeaderCell>Nama Klien</CTableHeaderCell>
+                          <CTableHeaderCell>Judul Proyek</CTableHeaderCell>
+                          <CTableHeaderCell>Status</CTableHeaderCell>
+                        </CTableRow>
+                      </CTableHead>
+                      <CTableBody>
+                        {team.projects.map((project, i) => (
+                          <CTableRow key={i}>
+                            <CTableHeaderCell>{i + 1}</CTableHeaderCell>
+                            <CTableDataCell>{project.client}</CTableDataCell>
+                            <CTableDataCell>{project.title}</CTableDataCell>
+                            <CTableDataCell>{project.status}</CTableDataCell>
+                          </CTableRow>
+                        ))}
+                      </CTableBody>
+                    </CTable>
+                  )}
+                </CCardBody>
+              </CCard>
+            </CCol>
+          ))
+        )}
+      </CRow>
+    </div>
   )
 }
 

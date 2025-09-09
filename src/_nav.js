@@ -18,15 +18,15 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Karyawan',
-    to: '/karyawan',
-    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
     name: 'Klien',
     to: '/klien',
     icon: <CIcon icon={cilAddressBook} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Karyawan',
+    to: '/karyawan',
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,

@@ -5,29 +5,13 @@ import {
   CCardBody,
   CCardHeader,
   CTable,
-  CTableBody,
   CTableHead,
   CTableRow,
   CTableHeaderCell,
-  CTableDataCell,
-  CBadge,
+  CTableBody,
 } from '@coreui/react'
 
 const Karyawan = () => {
-  const data = [
-    { nama: 'Ivan Setiawan', target: 100, poin: 100 },
-    { nama: 'Xaviera', target: 90, poin: 92 },
-    { nama: 'Budi Santoso', target: 85, poin: 70 },
-    { nama: 'Siti Aminah', target: 80, poin: 85 },
-  ]
-
-  // fungsi buat badge warna
-  const getBadge = (poin, target) => {
-    if (poin >= target) return 'success'
-    if (poin >= target * 0.8) return 'warning'
-    return 'danger'
-  }
-
   return (
     <CCard className="mb-4 shadow-sm border-0">
       <CCardHeader className="fw-bold bg-primary text-white">Daftar Karyawan</CCardHeader>
@@ -41,15 +25,11 @@ const Karyawan = () => {
             </CTableRow>
           </CTableHead>
           <CTableBody>
-            {data.map((item, index) => (
-              <CTableRow key={index}>
-                <CTableDataCell className="fw-semibold">{item.nama}</CTableDataCell>
-                <CTableDataCell>{item.target}</CTableDataCell>
-                <CTableDataCell>
-                  <CBadge color={getBadge(item.poin, item.target)}>{item.poin}</CBadge>
-                </CTableDataCell>
-              </CTableRow>
-            ))}
+            <CTableRow>
+              <CTableHeaderCell colSpan={3} className="text-center text-muted">
+                Belum ada data karyawan
+              </CTableHeaderCell>
+            </CTableRow>
           </CTableBody>
         </CTable>
       </CCardBody>
